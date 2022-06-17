@@ -1,2 +1,215 @@
 Q1) Make a class Person which Has-A relationship with the Address class and has
 ==================================================================================
+package com.q1;
+
+public class Person extends Address {
+  String name;
+  String gender;
+public Person(String name, String gender) {
+	super();
+	this.name = name;
+	this.gender = gender;
+}
+public Person(int i, int j) {
+	// TODO Auto-generated constructor stub
+}
+@Override
+public String toString() {
+	return "Person [name=" + name + ", gender=" + gender + "]";
+}
+  
+  
+}
+
+package com.q1;
+
+public class Instructor extends Person {
+ public Instructor(int i, int j) {
+		super(i, j);
+		// TODO Auto-generated constructor stub
+	}
+ 
+int instructorId;
+ int salary;
+}
+package com.q1;
+
+public class Address {
+ String city;
+ String state;
+ String pinCode;
+ 
+}
+package com.q1;
+
+public class Student {
+	public Student(int i, String string, int j) {
+		// TODO Auto-generated constructor stub
+	}
+	int studentId ; 
+	String courseEnrolled ; 
+	int courseFee ; 
+}
+
+package com.q1;
+
+public class Main {
+	public static void main(String[] args) {
+		Person newStudent = generatePerson(new Student(1,"c1",1000));
+		Person newInstructor = generatePerson(new Instructor(1,1));
+		System.out.println(newStudent);
+		System.out.println(newInstructor);
+		}
+
+	private static Person generatePerson(Student student) {
+		// TODO Auto-generated method stub
+		return new Person("n1","g1");
+	}
+
+	private static Person generatePerson(Instructor instructor) {
+		// TODO Auto-generated method stub
+		return new Person("Chandan","male");
+	}
+}
+=============================================================
+Q2) What is the use of ‘this’ and ‘super’ keywords in java explain with an example
+The super keyword in Java is a reference variable that is used to refer to immediate
+parent class object.
+Whenever you create the instance of a subclass, an instance of parent class is created
+implicitly which is referred by the super reference variable.
+Usage of Java super Keyword
+1. super can be used to refer to the immediate parent class instance variable.
+2. super can be used to invoke the immediate parent class method.
+3. super() can be used to invoke immediate parent class constructor.
+
+
+The super keyword in Java is a reference variable that is used to refer to immediate
+parent class object.
+Whenever you create the instance of a subclass, an instance of parent class is created
+implicitly which is referred by the super reference variable.
+Usage of Java super Keyword
+1. super can be used to refer to the immediate parent class instance variable.
+2. super can be used to invoke the immediate parent class method.
+3. super() can be used to invoke immediate parent class constructor.
+============================================================================
+Q3) Explain ClassCastException with the help of the example.
+he java.lang.ClassCastException is one of the unchecked exception in Java.
+ It can occur in our program when we tried to convert an object of one class 
+type into an object of another class type.
+
+When will be ClassCastException is thrown
+When we try to cast an object of Parent class to its Child
+ class type, this exception will be thrown.
+When we try to cast an object of one class into another 
+Q6) Why is multiple inheritance not supported in Java at class level ?
+class type that has not extended the other class or they don't have any relationship between them.
+Example
+Live Demo
+
+class ParentTest {
+   String parentName;
+   ParentTest(String n1){
+      parentName = n1;
+   }
+   public void display() {
+      System.out.println(parentName);
+   }
+}
+class ChildTest extends ParentTest {
+   String childName;
+   ChildTest(String n2) {
+      super(n2);
+      childName = n2;
+   }
+   public void display() {
+      System.out.println(childName);
+   }
+}
+public class Test {
+   public static void main(String args[]) {
+      ChildTest ct1 = new ChildTest("Jai");
+      ParentTest pt1 = new ParentTest("Adithya");
+      pt1 = ct1;
+      pt1.display();
+
+      ParentTest pt2 = new ParentTest("Sai");
+      ChildTest ct2 = (ChildTest)pt2;
+   }
+}
+==========================================
+Q6) Why is multiple inheritance not supported in Java at class level ?
+To reduce the complexity and simplify the language, multiple inheritance is not
+supported in java.
+Consider a scenario where A, B, and C are three classes. The C class inherits A and B
+classes. If A and B classes have the same method and you call it from child class
+object, there will be ambiguity to call the method of A or B class.
+Since compile-time errors are better than runtime errors, Java renders compile-time
+error if you inherit 2 classes. So whether you have same method or different, there will
+be compile time error.
+
+=====================================================
+Q7) Explain the difference between IS-A and Has-A relationship with the help of an
+example and explain about access modifiers and their accessibility?
+ IS-A -
+
+{totally based on Inheritance,} 
+ 
+{Inheritance is uni-directional.}
+
+ 
+{ extends keyword or implements} 
+eg-
+
+ class Apple extends Fruit {
+
+}
+
+----------------------------------------------------
+
+
+The fundamental of HAS-A is referring to composition, 
+ it means when association (aggregation or composition)
+ is applied, you can say HAS-A applies. e.g.
+
+Example of java class
+
+ public class Car {
+   
+   private Engine engine;
+    start()  {}
+}
+class Engine  {
+   // for brevity an simplicity I put only 2 methods
+   putOil() {}
+   String getEngineNo() {}
+
+}
+There are two types of modifiers in Java: access modifiers 
+and non-access modifiers.
+
+The access modifiers in Java specifies the accessibility or
+ scope of a field, method, constructor, or class. We can change
+the access level of fields, constructors, methods, and class
+ by applying the access modifier on it.
+
+There are four types of Java access modifiers:
+
+Private: The access level of a private modifier is only 
+within the class. It cannot be accessed from outside the class.
+
+
+Default: The access level of a default modifier is only 
+within the package. It cannot be accessed from outside 
+the package. If you do not specify any access level, 
+it will be the default.
+
+Protected: The access level of a protected modifier 
+is within the package and outside the package through 
+child class. If you do not make the child class, it 
+cannot be accessed from outside the package.
+
+Public: The access level of a public modifier is everywhere.
+ It can be accessed from within the class, outside the class,
+ within the package and outside the package.
+
+===========================================================
