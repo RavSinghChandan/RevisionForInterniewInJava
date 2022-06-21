@@ -1,0 +1,20 @@
+Iteralble(java.lang)
+|
+collection(I)
+| 
+List(I)   
+ |
+(ArrayList(c) + LinkedList(c) +Vetors(c)orStack(c)
+Set(I)
+|
+(HatshSet(c) ->LinkedHatshSet(c))+SortedSet(I) ->TreeSet(c))
+Queue(I)
+|
+(PriorityQueue(c) + Dequeue(I)->ArrayDequeue(c)
+
+===============================
+Map(I)(Java.util.pakage;)
+|
+HashMap(c)-> LinkedHashMap(c)   + sortedMap(I)->TreeMap(c) + HashTable
+
+
