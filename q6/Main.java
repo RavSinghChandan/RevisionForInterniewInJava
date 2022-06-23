@@ -1,11 +1,14 @@
 package com.q6;
 
 public class Main {
- public static void main(String [] args) {
-	 Demo d = new Demo();
-	 A a1= d.functionOfDemoClass();
-	 a1.funA();
-//	  Object obj = d.functionOfDemoClass();
-//	  System.out.println(obj);
- }
+  public   Main(String s) {
+	  
+	  System.out.println("Rav Chanda Kumar Singh");
+  }
+  public static void main(String [] args) {
+	  
+	  Inter i = Main::new;
+	  
+	  i.printName("anything!");
+  }
 }

@@ -1,12 +1,19 @@
 package com.q9;
 
 public class Main {
- public static void main(String[] args) {
-	 Employee emp1 = new Employee();
-	 emp1.showDetails();
-	 Employee emp2 = new Employee("420","Mangu",00);
-	 Employee emp3 = new Employee("421","Mangu1",01);
-	 emp2.showDetails();
-	 emp3.showDetails();
- }
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     RunThread thread1 = new RunThread();
+     RunThread thread2 = new RunThread();
+     
+     Thread t1 = new Thread(thread1);
+     Thread t2 = new Thread(thread2);
+      
+     t1.start();
+     t2.start();
+      t1.setName("Chandan Kumar");
+     t2.setName("Ratan Sir!");
+	}
+
 }
