@@ -1,378 +1,79 @@
 Q1) Why String is immutable in java and what is the difference between String, String Buffer and String
 Builder?
-Parameter	String	StringBuffer	StringBuilder
-Storage	String Pool	Heap	Heap
-Mutability	Immutable	Mutable	Mutable
-Thread Safe	Not used in a threaded environment	Used in a multi-threaded environment	Used in a single-threaded environment
-Performance	Slow	Slower than StringBuilder but faster than String	Faster than StringBuffer
-Syntax	String var =“Edureka”; 
-String var=new String(“Edureka”);  
-
-StringBuffer var = new StringBuffer("Edureka");	StringBuilder var = new StringBuilder("Edureka");
-=====================================================
+1.for security resons.
+2. To make the sourse unchannge even after refer by many rv.
+sting buffer
+1. to make string mutable
+2. Synchronized
+3.thread safe.
+4.slow
+Strig builder
+1. to make string mutable(but after the string buffer)
+2.non- synchronized
+3.not thread safe.
+4.fast
+-------------------------------
 Q2) Explain the difference between equals() method , == operator, compareTo() method, when you use them to
 compare two string objects
-Method 1: using == operator
-
- Double equals operator actually compares objects references. 
-class GFG {
-    public static void main(String[] args)
-    {
- 
-      
-        String s1 = "A";
-        String s2 = "A";
-        String s3 = "A";
-        String s4 = new String("A");
- 
-        // Compare s1 and s2
-        
-        System.out.println(s1 + " == " + s2
-                         + ": " + (s1 == s2));
- 
-        // Compare s1 and s3
-        
-        System.out.println(s1 + " == " + s3
-                         + ": " + (s1 == s3));
- 
-        // Compare s2 and s3
-       
-        System.out.println(s2 + " == " + s3
-                         + ": " + (s2 == s3));
- 
-        // Compare s1 and s4
-       
-        System.out.println(s1 + " == " + s4
-                         + ": " + (s1 == s4));
-    }
-}
-A == A: true
-A == A: true
-A == A: true
-A == A: false
----------------------------------------
-Method 2: Using equals() method
-
-In Java, string equals() method compares the two given strings based on the [data / content] of the string. 
-
-If all the contents of both the strings are same then it returns true. If all characters are not matched then it returns false. 
-
-
-
-class GFG {
-    public static void main(String[] args)
-    {
- 
-         
-        String s1 = "A";
-        String s2 = "A";
-        String s3 = "a";
-        String s4 = new String("A");
- 
-        // Compare s1 and s2
-         
-        System.out.println(s1 + " .equals " + s2
-                         + ": " + s1.equals(s2));
- 
-        // Compare s1 and s3
-        
-        System.out.println(s1 + " .equals " + s3
-                         + ": " + s1.equals(s3));
- 
-        // Compare s2 and s3
-       
-        System.out.println(s2 + " .equals " + s3
-                         + ": " + s2.equals(s3));
- 
-        // Compare s1 and s4
-         
-        System.out.println(s1 + " .equals " + s4
-                         + ": " + s1.equals(s4));
-    }
-}
- 
-Output: 
-A .equals A: true
-A .equals a: false
-A .equals a: false
-A .equals A: true
-
-
------------------------------------------------------------------
-
-
-Method 3: Using compareTo() method
-
-In java Comparable interface compares values and returns an int,
- these int values may be less than, equal, or greater than. T
-he java compare two string is based on the Unicode value of[ each character in the strings].
- If two strings are different, then they have different characters at some index that is 
-a valid index for both strings, or their lengths are different, or both.
-
- 
-Assuming index ‘i’ is where characters are different then compareTo() will return 
-
-firstString.charAt(i)-secondString.charAt(i).
-
-
-
-class GFG {
-    public static void main(String[] args)
-    {
- 
-         
-        String s1 = "A";
-        String s2 = "A";
-        String s3 = "a";
-        String s4 = new String("A");
- 
-        // Compare s1 and s2
-        // It should return 0 as they both
-        // have the same ASCII value
-        System.out.println(s1 + " .compareTo " + s2
-                         + ": " + s1.compareTo(s2));
- 
-        // Compare s1 and s3
-        // It should return -32 as they both
-        // have the different ASCII value
-        System.out.println(s1 + " .compareTo " + s3
-                         + ": " + s1.compareTo(s3));
- 
-        // Compare s3 and s2
-        // It should return 32 as they both
-        // have the different ASCII value
-        System.out.println(s3 + " .compareTo " + s2
-                         + ": " + s3.compareTo(s2));
- 
-        // Compare s1 and s4
-        // It should return 0 as they both
-        // have the same ASCII value
-        System.out.println(s1 + " .compareTo " + s4
-                         + ": " + s1.compareTo(s4));
-    }
-}
- 
-Output: 
-A .compareTo A: 0
-A .compareTo a: -32
-a .compareTo A: 32
-A .compareTo A: 0
-
-====================================================================
-
+equals()- content- boolean
+== - reference- boolean
+compareTo()- value(lexicographically) - (1,-1,0)(v1>v2,v1<v2<v1=v2)
+--------------------------------
 Q3) Explain the difference between Java Bean and POJO classes?
-1.Both classes must be public.
-2.Properties or variables defined in both classes must be private i.e. can't be accessed directly.
-3.Both classes must have default constructor i.e no-argument constructor.
-4.Public Getter and Setter must be present in both the classes in order to access the variables/properties
-5.The only difference is Bean classes implements Serializable interface.
-6.A Bean has not any argument constructor.
-============================================================================
-
-
+bean is also a pojo(plain old java object ) with the following restrictions-
+1. Should impement Serializabel Interface
+2. Memebers must be private
+3.Can acces members with getter and setters only not by constructors
+-------------------------------
 Q4) What are the types of inheritance present in java and also mention why multiple inheritance is not possible.
-Types of Inheritance:
-1. Single Inheritance
-2. Multilevel Inheritance
-3. Hierarchical Inheritance
-4. Multiple Inheritance
-5. Hybrid Inheritance
-Consider a scenario where A, B, and C are three classes. The C class inherits A and B
-classes. If A and B classes have the same method and you call it from child class
-object, there will be ambiguity to call the method of A or B class.
-Since compile-time errors are better than runtime errors, Java renders compile-time
-error if you inherit 2 classes. So whether you have same method or different, there will
-be compile time error.
+1. Single 
+2. Multiple
+3.Hiararchial
+4. Multiple 
+5. Hybrid
+Reasons-
+1.To avoid Ambiguity
+2.To prevent Diamod problem
+----------------------------------
+5.Explain about polymorphism and its types with the help of example?
+Method showing differe form at runtime/compile time
+1Static
+.walking(Stirng Chandan)
+walking(int 1)
+walkig(byt b)
+etc
+2. dynamic
+@Override
+walking(String Chandan)
+@Override
+walking(Stirng Rav)
+etc
+--------------------------------------
+Q8) What is the use of the final keyword when it is used on a variable,method and class.
 
-===============================================================================
-Q5) Explain about polymorphism and its types with the help of example?
-
-Polymorphism in Java is a concept by which we can perform a 
-single action in different ways. Polymorphism is derived from 2 
-Greek words: poly and morphs. The word "poly" means many and "morphs" means forms. 
-So polymorphism means many forms.
-
-There are two types of polymorphism in Java: compile-time 
-polymorphism and runtime polymorphism. We can perform polymorphism i
-n java by method overloading and method overriding.
-
-If you overload a static method in Java, it is the example of 
-compile time polymorphism. Here, we will focus on runtime polymorphism in java.
-
-class Bike{  
-  void run(){System.out.println("running");}  
-}  
-class Splendor extends Bike{  
-  void run(){System.out.println("running safely with 60km");}  
-  
-  public static void main(String args[]){  
-    Bike b = new Splendor();//upcasting  
-    b.run();  
-  }  
-
-
-}  
-
-
-
------------------------------
-class Bank{  
-float getRateOfInterest(){return 0;}  
-}  
-class SBI extends Bank{  
-float getRateOfInterest(){return 8.4f;}  
-}  
-class ICICI extends Bank{  
-float getRateOfInterest(){return 7.3f;}  
-}  
-class AXIS extends Bank{  
-float getRateOfInterest(){return 9.7f;}  
-}  
-class TestPolymorphism{  
-public static void main(String args[]){  
-Bank b;  
-b=new SBI();  
-System.out.println("SBI Rate of Interest: "+b.getRateOfInterest());  
-b=new ICICI();  
-System.out.println("ICICI Rate of Interest: "+b.getRateOfInterest());  
-b=new AXIS();  
-System.out.println("AXIS Rate of Interest: "+b.getRateOfInterest());  
-}  
-}  
-
-=================================================================
-Q6) Create a Student Bean class with the following fields:
-roll: Integer
-name: String
-address: String
-marks: Integer
-Create a Demo class and perform the following operation in the main method:
-Take the number as input from the user, How many Student objects need to be
-created.
-Create an array of Students with those numbers.
-Initialize all the student objects by taking details from the user.
-print all the Student details.
-print the average of all the Student marks
-
----------------------------------
-class Student{
-int rollno;
-String name;
-String city;
-Student(int rollno, String name, String city){
-this.rollno=rollno;
-this.name=name;
-this.city=city;
-}
-public static void main(String args[]){
-Student s1=new Student(101,"Raj","lucknow");
-Student s2=new Student(102,"Vijay","ghaziabad");
-System.out.println(s1);//println method call s1.toString()
-System.out.println(s2);//println method call s2.toString()
-}
-}
-=====================================================
-Q7)Explain Constructor Overloading with an example
-In Java, we can overload constructors like methods. 
-The constructor overloading can be defined as the concept
- of having more than one constructor with different
- parameters so that every constructor can perform a different task.
-
-Consider the following Java program, in which we have used different constructors in the class.
-
-Example
-public class Student {  
-//instance variables of the class  
-int id;  
-String name;  
-  
-Student(){  
-System.out.println("this a default constructor");  
-}  
-  
-Student(int i, String n){  
-id = i;  
-name = n;  
-}  
-  
-public static void main(String[] args) {  
-//object creation  
-Student s = new Student();  
-System.out.println("\nDefault Constructor values: \n");  
-System.out.println("Student Id : "+s.id + "\nStudent Name : "+s.name);  
-  
-System.out.println("\nParameterized Constructor values: \n");  
-Student student = new Student(10, "David");  
-System.out.println("Student Id : "+student.id + "\nStudent Name : "+student.name);  
-}  
-}  
-Output:
-
-this a default constructor
-
-
-Default Constructor values: 
-
-
-Student Id : 0
-Student Name : null
-
-
-Parameterized Constructor values: 
-
-
-Student Id : 10
-Student Name : David
-
-===================================================================
-Q8) What is the use of the final keyword when it is used on a variable,method and class
-Java final keyword is a non-access specifier that is used to restrict a class,
- variable, and method. 
-
-If we initialize a variable with the final keyword, then we cannot modify its value.
-
-final int number = 10;                             //final variable
-final float value;                                       //blank final variable
-static final double rate = 2.5;             //final and static variable
-
-
-public class Parent {
-  final void final_method() {
-    //definition of the Final Method
-  }
-}
-public class Child extends Parent {
-  final void final_Method() // overriding the method from the parent class  
-  {
-    // another definition of the final method
-  }
-
-
-public class Vidvan extends Tech {
-  void test() {
-    System.out.println("My Method");
-  }
-  public static void main(String[] args {
-    Vidvan obj = new Vidvan();
-    obj.test();
-  }
-}
-final class Tech {
-  //code inside class
-
-==============================================================================
+final - it is not going to change
+varible- this values is the final u can't change it
+method- don't provide other impl.
+class-can't create the object for this class
+-----------------------------------
 Q9) Which class is parent or root class in java. Also tell some of the functions present in that class
+Object-
+clone()
+equals()
+all multithreading methods
+wait()
+sleep()
+notify()
+notifyAll()
+etc..
+those methods are applicable on all the class in java.
+--------------------------------------
 
-Object class is present in java.lang package. Every class in Java is directly
- or indirectly derived from the Object class. If a class does not extend any 
-other class then it is a direct child class of Object and if extends another 
-class then it is indirectly derived. Therefore the Object class methods are
- available to all Java classes. Hence Object class acts as a root of 
-inheritance hierarchy in any Java Program.
-1. toString()
-2. hashCode()
-3. equals(Object obj)
-4. getClass():
-5. finalize() method
-=============================================================
+
+
+
+
+ 
+
+
 
