@@ -1,0 +1,64 @@
+Q1 What is the difference between Checked and Unchecked
+Exceptions in Java, create a user-defined checked and unchecked
+exception class?
+check exception =
+All throwable class except error and runtime exception of exception class
+Unchecked exception-
+all Runtime exception 
+(ame,nullpe,nobe,iobe)
+ Yes we can but we have extend the runtime exception for unchekced exception
+and exception class for checked exception(except rte)
+
+=========================
+Q2 What is the difference between the throw and throws keyword in
+Java?
+
+throw
+manually throws the exeption and we have to cath this in cath block.
+it is in method body or in a block
+it only throws only one exception
+throws-
+It is used when method might throw the exception 
+it is used in the method signature i
+it is the resposiblity of the caller the handdle this exception
+we can throw many exceptiona with throws keyword
+=================================
+Q3 Explain internal working of HashMap?
+
+Step-1
+takes the vlaue from the user and generates the Hash values(but the index ) 
+step2-
+Puts this hash value into the stack(coloum) as a key 
+step-3
+Once again when user puts the value(It might be same or different)
+step-3 A
+if the value if same then it calls the equals method to check weather the 
+content is same or not ?
+As it is the same so it will generate the same hash value(same) 
+and to store this value Java uses first the linked hashmap and if the values
+exceeds to 8 it automatically arrange itself into to slef balancing binary tree
+ so that the time comlexity of the retreaival will reamain O(1)
+Step3 B-
+If the value is different it generates different index and placed in the different 
+stack ..
+===============================
+Explain internal working of HashSet?
+same as hashmap 
+==================
+Q5 What is the difference between "==" and equals() method in
+Java?
+]== 
+compares the referene of the object
+equals ()
+cheks the content of the two object
+======================
+Q7 Why do we need to override equals and hashcode method?
+To avoid the hash collion
+so that hash algorith don' t generate the same hash code 
+========================
+Q9 Explain Finally and Final Keyword with an Example?
+Finally is keyword and final is also a keyword
+it is executed  in every case even it gives exception but not if the
+programme terminates(internsionally or unintensionally)
+final keyword is used to not change the properties of the variable 
+class or method
