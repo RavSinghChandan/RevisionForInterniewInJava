@@ -1,0 +1,284 @@
+Q1) Write a java application to demonstrate a Race condition, and
+how to solve this race condition.
+A condition in which two or more threads compete togather 
+to get certain  share  common resourse.
+There are two types of race conditions-
+1.RMW(read - modify-write)
+
+2.CTA(check-then-act)
+eg-
+
+class Counter implements Runnable  
+{  
+private int c = 0;  
+public void increment()   
+{  
+try   
+{  
+Thread.sleep(10);  
+}   
+catch (InterruptedException e)   
+{  
+//Auto-generated catch block  
+e.printStackTrace();  
+}  
+c++;  
+}  
+public void decrement()   
+{      
+c--;  
+}  
+public int getValue()   
+{  
+return c;  
+}  
+@Override  
+public void run()   
+{  
+//incrementing  
+this.increment();  
+System.out.println("Value for Thread After increment " + Thread.currentThread().getName() + " " + this.getValue());  
+//decrementing  
+this.decrement();  
+System.out.println("Value for Thread at last " + Thread.currentThread().getName() + " " + this.getValue());          
+}  
+}  
+public class RaceConditionDemo  
+{  
+public static void main(String args[])   
+{  
+Counter counter = new Counter();  
+Thread t1 = new Thread(counter, "Thread-1");  
+Thread t2 = new Thread(counter, "Thread-2");  
+Thread t3 = new Thread(counter, "Thread-3");  
+t1.start();  
+t2.start();  
+t3.start();  
+}      
+}
+console
+Value for Thread After increment Thread-1 2
+Value for Thread at last Thread-1 2
+Value for Thread After increment Thread-3 3
+Value for Thread at last Thread-3 1
+Value for Thread After increment Thread-2 2
+Value for Thread at last Thread-2 0
+solution-
+In order to prevent the race conditions, one should ensure that
+ only one process can access the shared data at a time. It is 
+the main reason why we need to synchronize the processes.
+
+Another solution to avoid race condition is mutual exclusion.
+ In mutual exclusion, if a thread is using a shared variable 
+or thread, another thread will exclude itself from doing the same thing.
+
+
+class Counter implements Runnable  
+{  
+private int c = 0;  
+public void increment()   
+{  
+try   
+{  
+Thread.sleep(10);  
+}   
+catch (InterruptedException e)   
+{  
+e.printStackTrace();  
+}  
+c++;  
+}  
+public void decrement()   
+{      
+c--;          
+}  
+public int getValue()   
+{  
+return c;  
+}  
+@Override  
+public void run()   
+{  
+synchronized(this)  
+{  
+// incrementing  
+this.increment();  
+System.out.println("Value for Thread After increment " + Thread.currentThread().getName() + " " + this.getValue());  
+//decrementing  
+this.decrement();  
+System.out.println("Value for Thread at last " + Thread.currentThread().getName() + " " + this.getValue());  
+}          
+}  
+}  
+public class RaceConditionDemo  
+{  
+public static void main(String args[])   
+{  
+Counter counter = new Counter();  
+Thread t1 = new Thread(counter, "Thread-1");  
+Thread t2 = new Thread(counter, "Thread-2");  
+Thread t3 = new Thread(counter, "Thread-3");  
+t1.start();  
+t2.start();  
+t3.start();  
+}      
+}  
+====================================================================
+Q2) Write a program to read the content from the abc.txt file using
+BufferedReader.
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+ 
+class Main
+{
+    public static void main(String[] args)
+    {
+        File file = new File("demo.txt");
+ 
+        try (BufferedReader br = new BufferedReader(new FileReader(file)))
+        {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+==================================================
+Q3) Write a program to read the content of the file abc.txt using
+FileReader.
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+ 
+class Main
+{
+    public static void main(String[] args)
+    {
+        File file = new File("doc.txt");
+ 
+        try (FileReader fr = new FileReader(file))
+        {
+            int content;
+            while ((content = fr.read()) != -1) {
+                System.out.print((char) content);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+====================================================
+Q4) Write a program to read the content of the file abc.txt using
+java.nio.file.Files class.
+
+import java.io.FileWriter;
+ 
+import java.io.IOException;
+
+ 
+class GFG {
+
+	 
+	public static void main(String[] args)
+	{
+		 
+		try {
+
+			 
+			FileWriter fw = new FileWriter("gfg.txt");
+
+			 
+			fw.write("We love GeeksForGeeks");
+
+			 
+			fw.close();
+ 
+			System.out.println("\nFile write done");
+		}
+
+		 
+		catch (IOException e) {
+
+			 
+			System.out.println("There are some IOException");
+				
+		}
+	}
+}
+
+================================================
+Q5) Write a java application to demonstrate a Deadlock condition,
+and how to solve this Deadlock condition.
+
+
+Deadlock in Java is a part of multithreading.
+ Deadlock can occur in a situation when a 
+thread is waiting for an object lock, that
+ is acquired by another thread and second 
+thread is waiting for an object lock that is acquired by first thread.
+ Since, both threads are waiting for each 
+other to release the lock, the condition is called deadlock.
+
+eg
+public class TestDeadlockExample1 {  
+  public static void main(String[] args) {  
+    final String resource1 = "ratan jaiswal";  
+    final String resource2 = "vimal jaiswal";  
+    // t1 tries to lock resource1 then resource2  
+    Thread t1 = new Thread() {  
+      public void run() {  
+          synchronized (resource1) {  
+           System.out.println("Thread 1: locked resource 1");  
+  
+           try { Thread.sleep(100);} catch (Exception e) {}  
+  
+           synchronized (resource2) {  
+            System.out.println("Thread 1: locked resource 2");  
+           }  
+         }  
+      }  
+    };  
+  
+    // t2 tries to lock resource2 then resource1  
+    Thread t2 = new Thread() {  
+      public void run() {  
+        synchronized (resource2) {  
+          System.out.println("Thread 2: locked resource 2");  
+  
+          try { Thread.sleep(100);} catch (Exception e) {}  
+  
+          synchronized (resource1) {  
+            System.out.println("Thread 2: locked resource 1");  
+          }  
+        }  
+      }  
+    };  
+  
+      
+    t1.start();  
+    t2.start();  
+  }  
+
+====================================
+Q6) Explain Thread Pool or Executor f/w in java?
+
+A thread pool reuses previously created threads to execute 
+current tasks and offers a solution to the problem of thread 
+cycle overhead and resource thrashing
+
+=================================
+Q7) Explain transient keyword in java
+The transient keyword in Java is used to avoid serialization.
+ If any object of a data structure is defined as a transient,
+ then it will not be serialized.
+
+Serialization is the ​process of converting an object into a byte stream.
+==================================
+    
