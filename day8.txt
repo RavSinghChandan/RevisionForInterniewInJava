@@ -1,0 +1,58 @@
+Q1. What is an SQL JOIN command, and when do you need it?
+
+SQL join clause is used to combine two or more tables
+on certain condition and gives the output.
+  When we want to fetch some information about the
+deatils we have in our talbes, we go for joins
+These are the followings JOIN commands
+1.JOIN(INNE JOIN)(default)(commmon among the talbes)
+2. Left join(left table to join + common among all tables)
+3.right join(right talbe to join clause + common among all the tables)
+4. outer join(fully outer jion)(left tables in join clause + ringt table in join clause)
+============================
+Q2.How would you write a query to JOIN these two tables?
+To get the relevant information about the entities us use in the tables
+let we have two tables say- cutommer and account having different fields.
+
+Who owns each account in the account table?
+How many accounts does Marc Tesco have ?
+How many accounts are owned by a female customer?
+What is the total overdraft amount for all of Emma Johnson’s accounts?
+ such informations we can get from the join clause.
+======================
+Q3. What types of JOINs are there?
+
+There are possibly 4 types of joins clause are there-
+1. join(inner join)
+2. left join
+3. riht join
+4. out join(fully outer join)
+================
+Q4. What is the difference between an SQL INNER JOIN and an SQL
+LEFT JOIN?
+inner join-
+The output of this join clause is the common column and matching data 
+among two or more talbes.
+left join-
+The output of this join clause is the all data of left side talbe of join 
+clause plus the common data and column present among them.
+===================
+Q5.How do you join more than two tables?
+This is the example of the multiple joins-
+
+select s.id, name, marks, attendance
+from students as s
+
+inner join
+
+marks as m
+on s.id=m.id
+
+inner join
+
+attendance as a
+on m.id=a.id
+
+where a.attendance>=75;
+
+======================
